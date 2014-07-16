@@ -27,14 +27,24 @@
     
 }
 
+
+.app{
+
+    text-align:center;
+    
+    
+    
+}
+
 .menu-container{
+    vertical-align: middle
+    margin: 5px, 10px, 5px, 10px;
     display:inline-block;
-    margin-left: auto;
     border: 1px solid #000;
-    width: 100%;
-    height: auto;  
-    top: 20%; 
-    text-align:center; 
+    width: 90%;
+    height: auto;   
+    text-align:left;
+
     -webkit-backface-visibility: hidden;
 }
 

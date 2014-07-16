@@ -4,53 +4,58 @@
     <head>
         <meta charset="utf-8" />
         <meta name="format-detection" content="telephone=no" />
-       <meta name="viewport" content="width=device-width, initial-scale=1.0,
-       maximum-scale=1.0, target-densitydpi=medium-dpi, user-scalable=0" />
-        <link rel="stylesheet" type="text/css" href="css/index.css" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0,
+        maximum-scale=1.0, target-densitydpi=device-dpi, user-scalable=0" />
+        
+        <link rel="stylesheet"  href="jqueryMobile/jquery.mobile-1.4.3.min.css" />
+        <script src="jqueryMobile/jquery-1.11.1.min.js"></script>
+        <script src="jqueryMobile/jquery.mobile-1.4.3.min.js"></script>
+              
         <meta name="msapplication-tap-highlight" content="no" />
     
-        <title>Smith College Mobile</title>
+        
+        
         <script type="text/javascript" src="cordova.js"></script>
         <script type="text/javascript" src="js/index.js"></script>
-        <script type="text/javascript" charset="utf-8">
-    
-            function onLoad()
-             {
-                  document.addEventListener("deviceready", onDeviceReady, false);
-             }
-    
-            function onDeviceReady() {
-                    alert("Ready");
+
+        <style type="text/css">
+            body {
+                background: url(img/splash.jpg);
+                background-repeat:repeat-y;
+                background-position:center center;
+                background-attachment:scroll;
+                background-size:100% 100%;
             }
-           
+            .ui-page {
+                background: transparent;
+            }
+            .ui-content{
+                background: transparent;
+            }
             
-            function callAnotherPage()
-             {
-                window.location = "dining.html";
-             }
-        </script>
+            .ui
+        </style>
         
+        <title>Smith College Mobile</title>
         
     </head>
-    <body onload="onLoad();">
-        <div class="app">
-                    <div class="menu-container">
-
-                            <button type="menu_item" name="dining" onclick="callAnotherPage();">
-                                <img src="img/icon_saved.png" />
-                            </button>
-                            <button type="menu_item" name="dining" onclick="callAnotherPage();">
-                                <img src="img/icon_map.png" />
-                            </button>
-                            <button type="menu_item" name="dining" onclick="callAnotherPage();">
-                                <img src="img/icon_schedule.png" />
-                            </button>
-                    
+    
+    <body>
+        <div class="ui-content" role="main">
+            
+                <fieldset data-role="controlgroup" class="button-container" >
+                     <a href="dining.html" class="ui-shadow ui-btn ui-corner-all ui-icon-home ui-btn-icon-right" >Dining</a>
+                </fieldset>
+            
+        
+            <div data-theme="a" data-role="footer" data-position="fixed">
+                <h3>Smith College</h3>
             </div>
-        </div>
+        
          
-        <script type="text/javascript">
-            app.initialize();
-        </script>
+            <script type="text/javascript">
+                app.initialize();
+            </script>
+        </div>
     </body>
 </html>
