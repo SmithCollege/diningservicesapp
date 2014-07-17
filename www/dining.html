@@ -59,14 +59,15 @@
      <input type="date" name="date" id="dining-date" value="" />
     
      <br/>
-     <ul data-role="listview" data-filter="true" data-filter-placeholder="Search dining halls..." data-inset="true">
-       <li><a href="#">Lamont</a></li>
-       <li><a href="#">Chapin</a></li>
-       <li><a href="#">King Scales</a></li>
-     </ul>
-
-     <div class="food_option"
-        <fieldset data-role="controlgroup" data-type="horizontal" data-mini="true">
+     <div id="my-wrapper">
+      <ul data-role="listview" data-filter="true" data-filter-placeholder="Search dining halls..." data-inset="true">
+        <li><a href="#">Lamont</a></li>
+        <li><a href="#">Chapin</a></li>
+        <li><a href="#">King Scales</a></li>
+      </ul>
+    </div>
+     <div class="food_option" style="text-align: center">
+        <fieldset data-role="controlgroup" data-type="horizontal" data-mini="true" data-inline="true">
           <input type="radio" name="food-choice" id="breakfast" value="breakfast" checked="checked">
           <label for="breakfast">Breakfast</label>
     

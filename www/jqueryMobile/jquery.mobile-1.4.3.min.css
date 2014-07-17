@@ -4,9 +4,12 @@
 
 
 
-.food_option {
-    text-align: center;
+
+
+.ui-controlgroup-controls
+{
+    width:100% !important;
 }
-.food_option fieldset {
-    display: inline;
+.ui-radio {
+    width:33.333% !important;
 }
