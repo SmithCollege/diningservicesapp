@@ -9,25 +9,55 @@
     <link rel="stylesheet"  href="jqueryMobile/jquery.mobile-1.4.3.min.css" />
     <script src="jqueryMobile/jquery-1.11.1.min.js"></script>
     <script src="jqueryMobile/jquery.mobile-1.4.3.min.js"></script>
+   
+    
+    
     <title>Dining</title>
     
     
-    <script type="text/javascript" charset="utf-8">
-      function set_date(){
-        var currentTime = new Date();
-        $("#date").val(currentTime);
-      }
-    </script>
+    
         
   </head>
 
-  <body onload="set_date()">
+  <body>
+     <script type="text/javascript">
+
+        $(document).ready(function () {
+            set_date();
+        });
+
+        function set_date(){
+            var date = new Date();
+    
+            var day = date.getDate();
+            var month = date.getMonth() + 1;
+            var year = date.getFullYear();
+            
+            if (month < 10) month = "0" + month;
+            if (day < 10) day = "0" + day;
+            
+            var today = year + "-" + month + "-" + day;       
+            document.getElementById("dining-date").value = today;
+            
+          }
+
+    </script>
+    <script>
+        $('#verify').click(function() {
+          $.get("http://www.smith.edu/ws/iphone/dining.php?action=getDiningHalls",function(data,status){
+          alert("Data: " + data + "\nStatus: " + status);
+           });
+        });
+      
+    </script>
+    
     <div class="ui-content" role="main">
       <div data-theme="a" data-role="header" data-position="fixed">
         <h1>Dining</h1>
      </div>
    
-     <input type="date" name="date" id="date"/>
+     <input type="date" name="date" id="dining-date" value="" />
+    
      <br/>
      <ul data-role="listview" data-filter="true" data-filter-placeholder="Search dining halls..." data-inset="true">
        <li><a href="#">Lamont</a></li>
@@ -51,6 +81,14 @@
     
 
     <textarea name="textarea-1" id="textarea-1"></textarea>
+    
+    <!--debug button-->
+    <input
+    type="button"
+    name="verify"
+    id="verify"
+    data-theme="a" 
+    value="Check" />
 
     
     <div data-theme="a" data-role="footer" data-position="fixed">
