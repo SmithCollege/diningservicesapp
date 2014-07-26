@@ -13,9 +13,6 @@
     
     
     <title>Dining</title>
-    
-    
-    
         
   </head>
 
@@ -50,7 +47,25 @@
         });
       
     </script>
-    
+    <script>
+     $( document ).ready(function() {
+         $.getJSON("https://www.smith.edu/its/api/diningservices/dininghalls", function(data){
+            $.each(data, function (index, value) {
+            $('#dh-choice')
+            .controlgroup("container")
+            .append('<input type="radio" name="dhall-choice" id="'+value.dining_hall_name+'" value="'+value.dining_hall_name+'"><label for="'+value.dining_hall_name+'">'+value.dining_hall_name+'</label>');
+        });
+            $("#dh-choice")
+          .enhanceWithin()
+          .controlgroup("refresh");
+        });
+         
+     });
+          
+     
+    </script>
+     
+    </script>
     <div class="ui-content" role="main">
       <div data-theme="a" data-role="header" data-position="fixed">
         <h1>Dining</h1>
@@ -59,15 +74,16 @@
      <input type="date" name="date" id="dining-date" value="" />
     
      <br/>
-     <div id="my-wrapper">
-      <ul data-role="listview" data-filter="true" data-filter-placeholder="Search dining halls..." data-inset="true">
-        <li><a href="#">Lamont</a></li>
-        <li><a href="#">Chapin</a></li>
-        <li><a href="#">King Scales</a></li>
-      </ul>
-    </div>
-     <div class="food_option" style="text-align: center">
-        <fieldset data-role="controlgroup" data-type="horizontal" data-mini="true" data-inline="true">
+     <form>
+
+        <fieldset id="dh-choice" data-role="controlgroup" data-mini="true" data-filter="true" data-filter-placeholder="Search Dining Hall" data-inset="true">
+      
+        </fieldset>
+     </form>       
+        
+    
+     <div id="food_option" style="text-align: center">
+        <fieldset  data-role="controlgroup" data-type="horizontal" data-mini="true" data-inline="true">
           <input type="radio" name="food-choice" id="breakfast" value="breakfast" checked="checked">
           <label for="breakfast">Breakfast</label>
     
