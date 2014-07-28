@@ -13,9 +13,6 @@
     
     
     <title>Dining</title>
-    
-    
-    
         
   </head>
 
@@ -24,6 +21,8 @@
 
         $(document).ready(function () {
             set_date();
+            var div= $('#dh-choice');
+            div.css("height", ($(window).height() - div.height())/3  + 'px'); //set dininghall scroll are to 1/3 to fit the screen
         });
 
         function set_date(){
@@ -43,13 +42,42 @@
 
     </script>
     <script>
-        $('#verify').click(function() {
-          $.get("http://www.smith.edu/ws/iphone/dining.php?action=getDiningHalls",function(data,status){
-          alert("Data: " + data + "\nStatus: " + status);
-           });
-        });
+      $('#verify').click(function() {
+          var dh = $('input[name=dhall-choice]:checked').val();
+      var ml = $('input[name=food-choice]:checked').val();
+      var time = $('#dining-date').val();
+      show_menu(ml,dh,time);
+      });
       
+      function show_menu(meal,dining_hall,date){
+        var box = $("#textarea-1");
+        box.val('')
+        $.getJSON("https://www.smith.edu/its/api/diningservices/dininghallmeal/"+meal+"/"+dining_hall+"/"+date, function(data){
+            $.each(data, function (index, value) {
+              box.val (box.val() +"\n" + value.item_text);
+            
+        });
+        });
+      }
     </script>
+    <script>
+     $( document ).ready(function() {
+        $.getJSON("https://www.smith.edu/its/api/diningservices/dininghalls", function(data){
+            $.each(data, function (index, value) {
+              $('#dh-choice')
+              .controlgroup("container")
+              .append('<input type="radio" name="dhall-choice" id="'+value.dining_hall_name+'" value="'+value.dining_hall_name+'"><label for="'+value.dining_hall_name+'">'+value.dining_hall_name+'</label>');
+            });
+              $("#dh-choice")
+            .enhanceWithin()
+            .controlgroup("refresh");  
+        });
+         
+      });
+          
+     
+    </script>
+     
     
     <div class="ui-content" role="main">
       <div data-theme="a" data-role="header" data-position="fixed">
@@ -58,23 +86,23 @@
    
      <input type="date" name="date" id="dining-date" value="" />
     
-     <br/>
-     <div id="my-wrapper">
-      <ul data-role="listview" data-filter="true" data-filter-placeholder="Search dining halls..." data-inset="true">
-        <li><a href="#">Lamont</a></li>
-        <li><a href="#">Chapin</a></li>
-        <li><a href="#">King Scales</a></li>
-      </ul>
-    </div>
-     <div class="food_option" style="text-align: center">
-        <fieldset data-role="controlgroup" data-type="horizontal" data-mini="true" data-inline="true">
-          <input type="radio" name="food-choice" id="breakfast" value="breakfast" checked="checked">
+     <form id="dha">
+
+        <fieldset id="dh-choice" data-role="controlgroup" data-mini="true" data-filter="true" data-filter-placeholder="Search Dining Hall" data-inset="true">
+      
+        </fieldset>
+     </form>       
+        
+    
+     <div id="food_option" style="text-align: center">
+        <fieldset  data-role="controlgroup" data-type="horizontal" data-mini="true" data-inline="true">
+          <input type="radio" name="food-choice" id="breakfast" value="Breakfast" checked="checked">
           <label for="breakfast">Breakfast</label>
     
-          <input type="radio" name="food-choice" id="lunch" value="lunch">
+          <input type="radio" name="food-choice" id="lunch" value="Lunch">
           <label for="lunch">Lunch</label>
                 
-          <input type="radio" name="food-choice" id="dinner" value="dinner">
+          <input type="radio" name="food-choice" id="dinner" value="Dinner">
           <label for="dinner">Dinner</label>
                 
         </fieldset>

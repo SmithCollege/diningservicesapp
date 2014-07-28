@@ -6,10 +6,14 @@
 
 
 
-.ui-controlgroup-controls
+#food_option.ui-controlgroup-controls
 {
     width:100% !important;
 }
-.ui-radio {
+#food_option.ui-radio {
     width:33.333% !important;
 }
+
+ #dh-choice {
+         overflow-y: scroll !important
+ }
