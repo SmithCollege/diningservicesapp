@@ -19,6 +19,7 @@
     <script src="js/onDiningStartup.js"></script>
     <script src="js/diningEvents.js"></script>
     
+    <!-- Page Header -->
     <div class="ui-content" role="main">
       <div data-theme="a" data-role="header" data-position="fixed">
         <a href="index.html" data-role="button" data-icon="arrow-l">Back</a>
@@ -26,15 +27,18 @@
 	<a href="#" target="_blank" data-rel="external" data-role="button"
            data-icon="info" data-iconpos="right">Nutrition</a>
       </div>
-   
+      
+   <!-- Date Picker, simplicity for crossplatform pick -->
       <input type="date" name="date" id="dining-date" value="" />
     
+    <!-- On startup controlgroup is inflated with dining halls fetched from JSON-->
       <form id="dining-halls">
         <fieldset id="dh-choice" data-role="controlgroup" data-mini="true"
                   data-filter="true" data-filter-placeholder="Search Dining Hall" data-inset="true">  
         </fieldset>
       </form>       
-        
+      
+       <!-- Meal options' value are used in JSON urls-->
      <div id="meal-choice" style="text-align: center">
         <fieldset  data-role="controlgroup" data-type="horizontal" data-mini="true" data-inline="true">
           <input type="radio" name="meal-option" id="breakfast" value="Breakfast" checked="checked">
@@ -49,18 +53,18 @@
         </fieldset>
     </div>
     
-    <!--debug button-->
+    <!--buttons-->
     <input
     type="button"
     name="verify"
-    id="verify"
+    id="get-menu"
     data-theme="a" 
     value="Get Menu" />
     
     <input
     type="button"
-    name="getTime"
-    id="getTime"
+    name="getMenu"
+    id="get-time"
     data-theme="a" 
     value="Get Hours" />
 
