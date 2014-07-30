@@ -9,107 +9,45 @@
     <link rel="stylesheet"  href="jqueryMobile/jquery.mobile-1.4.3.min.css" />
     <script src="jqueryMobile/jquery-1.11.1.min.js"></script>
     <script src="jqueryMobile/jquery.mobile-1.4.3.min.js"></script>
-   
-    
+    <script src="jqueryMobile/jquery.mobile.dynamic.popup.js"></script>
     
     <title>Dining</title>
         
   </head>
 
   <body>
-     <script type="text/javascript">
-
-        $(document).ready(function () {
-            set_date();
-            var div= $('#dh-choice');
-            div.css("height", ($(window).height() - div.height())/3  + 'px'); //set dininghall scroll are to 1/3 to fit the screen
-        });
-
-        function set_date(){
-            var date = new Date();
-    
-            var day = date.getDate();
-            var month = date.getMonth() + 1;
-            var year = date.getFullYear();
-            
-            if (month < 10) month = "0" + month;
-            if (day < 10) day = "0" + day;
-            
-            var today = year + "-" + month + "-" + day;       
-            document.getElementById("dining-date").value = today;
-            
-          }
-
-    </script>
-    <script>
-      $('#verify').click(function() {
-          var dh = $('input[name=dhall-choice]:checked').val();
-      var ml = $('input[name=food-choice]:checked').val();
-      var time = $('#dining-date').val();
-      show_menu(ml,dh,time);
-      });
-      
-      function show_menu(meal,dining_hall,date){
-        var box = $("#textarea-1");
-        box.val('')
-        $.getJSON("https://www.smith.edu/its/api/diningservices/dininghallmeal/"+meal+"/"+dining_hall+"/"+date, function(data){
-            $.each(data, function (index, value) {
-              box.val (box.val() +"\n" + value.item_text);
-            
-        });
-        });
-      }
-    </script>
-    <script>
-     $( document ).ready(function() {
-        $.getJSON("https://www.smith.edu/its/api/diningservices/dininghalls", function(data){
-            $.each(data, function (index, value) {
-              $('#dh-choice')
-              .controlgroup("container")
-              .append('<input type="radio" name="dhall-choice" id="'+value.dining_hall_name+'" value="'+value.dining_hall_name+'"><label for="'+value.dining_hall_name+'">'+value.dining_hall_name+'</label>');
-            });
-              $("#dh-choice")
-            .enhanceWithin()
-            .controlgroup("refresh");  
-        });
-         
-      });
-          
-     
-    </script>
-     
+    <script src="js/onDiningStartup.js"></script>
+    <script src="js/diningEvents.js"></script>
     
     <div class="ui-content" role="main">
       <div data-theme="a" data-role="header" data-position="fixed">
-        <h1>Dining</h1>
-     </div>
+        <a href="index.html" data-role="button" data-icon="arrow-l">Back</a>
+	<h1>Dining</h1>
+	<a href="#" target="_blank" data-rel="external" data-role="button"
+           data-icon="info" data-iconpos="right">Nutrition</a>
+      </div>
    
-     <input type="date" name="date" id="dining-date" value="" />
+      <input type="date" name="date" id="dining-date" value="" />
     
-     <form id="dha">
-
-        <fieldset id="dh-choice" data-role="controlgroup" data-mini="true" data-filter="true" data-filter-placeholder="Search Dining Hall" data-inset="true">
-      
+      <form id="dining-halls">
+        <fieldset id="dh-choice" data-role="controlgroup" data-mini="true"
+                  data-filter="true" data-filter-placeholder="Search Dining Hall" data-inset="true">  
         </fieldset>
-     </form>       
+      </form>       
         
-    
-     <div id="food_option" style="text-align: center">
+     <div id="meal-choice" style="text-align: center">
         <fieldset  data-role="controlgroup" data-type="horizontal" data-mini="true" data-inline="true">
-          <input type="radio" name="food-choice" id="breakfast" value="Breakfast" checked="checked">
+          <input type="radio" name="meal-option" id="breakfast" value="Breakfast" checked="checked">
           <label for="breakfast">Breakfast</label>
     
-          <input type="radio" name="food-choice" id="lunch" value="Lunch">
+          <input type="radio" name="meal-option" id="lunch" value="Lunch">
           <label for="lunch">Lunch</label>
                 
-          <input type="radio" name="food-choice" id="dinner" value="Dinner">
+          <input type="radio" name="meal-option" id="dinner" value="Dinner">
           <label for="dinner">Dinner</label>
                 
         </fieldset>
     </div>
-    
-
-    <textarea name="textarea-1" id="textarea-1"></textarea>
     
     <!--debug button-->
     <input
@@ -117,13 +55,15 @@
     name="verify"
     id="verify"
     data-theme="a" 
-    value="Check" />
-
+    value="Get Menu" />
     
-    <div data-theme="a" data-role="footer" data-position="fixed">
-      <h3>Smith College</h3>
-    </div>
- 
+    <input
+    type="button"
+    name="getTime"
+    id="getTime"
+    data-theme="a" 
+    value="Get Hours" />
+
    </div>
   </body>
 </html>
