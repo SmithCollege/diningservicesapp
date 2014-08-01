@@ -24,8 +24,9 @@
       <div data-theme="a" data-role="header" data-position="fixed">
         <a href="index.html" data-role="button" data-icon="arrow-l">Back</a>
 	<h1>Dining</h1>
-	<a href="#" target="_blank" data-rel="external" data-role="button"
-           data-icon="info" data-iconpos="right">Nutrition</a>
+        <!--window.open() makes sure the link is opened in external browser-->
+	<a href="#" onclick="window.open('http://cbweb.smith.edu/NetNutrition/Home.aspx', '_system');"
+        data-role="button" data-icon="info" data-iconpos="right">Nutrition</a>
       </div>
       
    <!-- Date Picker, simplicity for crossplatform pick -->
