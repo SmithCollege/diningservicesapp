@@ -41,10 +41,38 @@
     </head>
     
     <body>
+        <script>
+           function openDining(){
+                if (networkAvailable()) {
+                    $.mobile.navigate( "dining.html");
+                }
+                else{
+                    window.plugins.toast.show('Check your internet connection', 'short', 'bottom');     
+                }
+            }
+            
+           
+           function networkAvailable(){
+                var networkState = navigator.connection.type;
+                var states = {};
+                //can limit the number of available connections
+                states[Connection.UNKNOWN]  = true;
+                states[Connection.ETHERNET] = true;
+                states[Connection.WIFI]     = true;
+                states[Connection.CELL_2G]  = true;
+                states[Connection.CELL_3G]  = true;
+                states[Connection.CELL_4G]  = true;
+                states[Connection.CELL]     = true;
+                states[Connection.NONE]     = false;
+                
+                return states[networkState];
+           }
+        </script>
         <div class="ui-content" role="main">
             
                 <fieldset data-role="controlgroup" class="button-container" >
-                     <a href="dining.html" class="ui-shadow ui-btn ui-corner-all ui-icon-home ui-btn-icon-right" >Dining</a>
+                     <a href="#" onclick="openDining()"
+                        data-role="button" data-icon="home" data-iconpos="right">Dining</a>
                 </fieldset>
             
         
