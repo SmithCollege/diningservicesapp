@@ -31,8 +31,12 @@ $(document).ready(function () {
                         +'"><label for="'+value.dining_hall_name+'">'
                         +value.dining_hall_name+'</label>'); //append radio button with DH id/name/value
               });
+              //select first radio button
+              $("input[type='radio']:first").attr("checked", "checked");//!!Selects the very first radio on the page
               $("#dh-choice")
               .enhanceWithin()
               .controlgroup("refresh");  //make sure controul group is displayed updated
+             
             });
           }
+          
