@@ -17,7 +17,8 @@
         
         <script type="text/javascript" src="cordova.js"></script>
         <script type="text/javascript" src="js/index.js"></script>
-
+        <script type="text/javascript" src="js/utilities.js"></script>
+        
         <style type="text/css">
             body {
                 background: url(img/splash.jpg);
@@ -41,10 +42,22 @@
     </head>
     
     <body>
+        <script>
+           function openDining(){
+                if (networkAvailable()) {
+                    //$.mobile.navigate( "dining.html");
+                    $.mobile.navigate( "dining.html", { transition: "slide"});
+                }
+                else{
+                    window.plugins.toast.show('Check your internet connection', 'short', 'bottom');     
+                }
+            }
+        </script>
         <div class="ui-content" role="main">
             
                 <fieldset data-role="controlgroup" class="button-container" >
-                     <a href="dining.html" class="ui-shadow ui-btn ui-corner-all ui-icon-home ui-btn-icon-right" >Dining</a>
+                     <a href="#" onclick="openDining()"
+                        data-role="button" data-icon="home" data-iconpos="right">Dining</a>
                 </fieldset>
             
         
