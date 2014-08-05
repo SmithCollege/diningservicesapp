@@ -2,7 +2,7 @@ $(document).ready(function () {
             setDate();
             getDiningHalls();
             var div= $('#dh-choice'); 
-            div.css("height", ($(window).height() - div.height())/3  + 'px'); //set dininghall scroll height to 1/3 to fit the screen
+            div.css("height", ($(window).height() - div.height())/3 + 'px'); //set dininghall scroll height to 1/3 to fit the screen
         });
 
         function setDate() {
