@@ -1,3 +1,9 @@
+$(document).on('change', '[type="radio"]', function(){
+          //makes sure that virtual keyboard is hidden when radio button(dining hall) is selected
+          document.activeElement.blur();
+          $("#dh-choice").blur();
+    });    
+
 $('#get-menu').click(function() {
           var dhall = $('input[name=dhall-choice]:checked').val();//get name of DH
           var meal = $('input[name=meal-option]:checked').val(); // get meal
