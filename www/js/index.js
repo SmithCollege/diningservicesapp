@@ -47,3 +47,13 @@ var app = {
         console.log('Received Event: ' + id);
     }
 };
+
+function openDining(){
+//opens dining.html on click if network is available
+    if (networkAvailable()) {
+        $.mobile.navigate( "dining.html", { transition: "slide"});
+    }
+    else{
+        window.plugins.toast.show('Check your internet connection', 'short', 'bottom');     
+    }
+}
