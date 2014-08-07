@@ -10,7 +10,13 @@
     width:33.3333% ;
 }
 
+#dh-choice {
+         overflow: auto;
+         -webkit-overflow-scrolling: touch;
+}
 
- #dh-choice {
-         overflow-y: scroll !important;
- }
+.ui-grid-a{
+    text-align: center;
+    width: 100% !important;
+    color:white;
+}
