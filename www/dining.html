@@ -2,8 +2,8 @@
   <head>
     <meta charset="utf-8" />
     <meta name="format-detection" content="telephone=no" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0,
-    maximum-scale=1.0, target-densitydpi=device-dpi, user-scalable=0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1,
+    maximum-scale=1, target-densitydpi=device-dpi, user-scalable=no" />
     <meta name="msapplication-tap-highlight" content="no" />
         
     <link rel="stylesheet"  href="jqueryMobile/jquery.mobile-1.4.3.min.css" />
@@ -34,9 +34,9 @@
     
     <!-- On startup controlgroup is inflated with dining halls fetched from JSON-->
       <form id="dining-halls">
-        <fieldset id="dh-choice" data-role="controlgroup" data-mini="true"
+        <div id="dh-choice" data-role="controlgroup" data-mini="true"
                   data-filter="true" data-filter-placeholder="Search Dining Hall" data-inset="true">  
-        </fieldset>
+        </div>
       </form>       
       
        <!-- Meal options' value are used in JSON urls-->
