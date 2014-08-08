@@ -51,7 +51,7 @@ var app = {
 function openDining(){
 //opens dining.html on click if network is available
     if (networkAvailable()) {
-        $.mobile.navigate( "dining.html", { transition: "slide"});
+        $.mobile.navigate( "#diningpage", { transition: "slide"});
     }
     else{
         window.plugins.toast.show('Check your internet connection', 'short', 'bottom');     

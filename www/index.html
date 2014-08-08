@@ -1,11 +1,10 @@
 <!DOCTYPE html>
-
 <html>
     <head>
         <meta charset="utf-8" />
         <meta name="format-detection" content="telephone=no" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0,
-        maximum-scale=1.0, target-densitydpi=device-dpi, user-scalable=0" />
+        maximum-scale=1.0, target-densitydpi=device-dpi, user-scalable=no" />
         <meta name="msapplication-tap-highlight" content="no" />
         
         <link rel="stylesheet"  href="jqueryMobile/jquery.mobile-1.4.3.min.css" />
@@ -15,41 +14,79 @@
         <script type="text/javascript" src="cordova.js"></script>
         <script type="text/javascript" src="js/index.js"></script>
         <script type="text/javascript" src="js/utilities.js"></script>
-        
+        <script src="js/onDiningStartup.js"></script>
+        <script src="js/diningEvents.js"></script>
+        <!--    background:url(img/homescreen.png) no-repeat; -->
         <style type="text/css">
-            body {
-                background: url(img/homescreen.png);
-                background-repeat:repeat-y;
-                background-position:center center;
-                background-attachment:scroll;
-                background-size:100% 100%;
-            }
-            .ui-page {
-                background: transparent;
-            }
-            .ui-content{
-                background: transparent;
-            }
-            
-        </style>
-        
+        #indexpage{
+            background: transparent url(img/homescreen.png) no-repeat center center;
+            background-repeat:repeat-y;
+            background-position:center center;
+            background-attachment:scroll;
+            background-size:100% 100%;
+        }
+        #diningpage{
+            background: #520045;
+        }
+        </style>   
         <title>Smith College Mobile</title>
-        
     </head>
-    
     <body>
-        <div class="ui-content" role="main">
-            <div class="ui-grid-a"> <!-- three column grid -->
-                <div class="ui-block-a">  <!-- next icon should state ui-block-b and so on -->
-                     <a href="#" onclick="openDining()">
-                        <img src="img/dining.png" width="100" height="100">
-                     </a>
-                     <p>Dining</p>
+        <!-- SCMobile Home Page -->
+        <div data-role="page" id="indexpage" data-dom-cache="false">
+            <div data-role="content">
+                <div class="ui-grid-a"> <!-- two column grid -->
+                    <div class="ui-block-a">  <!-- next icon should state ui-block-b and so on -->
+                         <a href="#" onclick="openDining()">
+                            <img src="img/dining.png" width="100" height="100">
+                         </a>
+                         <p>Dining</p>
+                    </div>
                 </div>
             </div>
+        </div>        
+        <!-- Dining page -->
+        <div data-role="page" id="diningpage" data-dom-cache="false">
+        <!-- Page Header -->
+            <div data-role="content">
+                <div data-theme="a" data-role="header" data-position="fixed">
+                    <a href="#indexpage" data-role="button" data-icon="arrow-l"
+                    data-transition="slide" data-direction="reverse" data-inline="true" class="ui-btn-left">Back</a>
+                    <h1>Dining</h1>
+                    <!--window.open() makes sure the link is opened in external browser-->
+                    <a href="#" onclick="window.open('http://cbweb.smith.edu/NetNutrition/Home.aspx', '_system');"
+                    data-role="button" data-icon="info" data-inline="true" class="ui-btn-right">Nutrition</a>
+                </div>   
+                <!-- Date Picker, simplicity for crossplatform pick -->
+                <input type="date" name="date" id="dining-date" value=""/>
+                <!-- Dining Hall Filter-->
+                <form class="ui-filterable">
+                    <input id="dh-filter" data-type="search" placeholder="Filter Dining Halls...">
+                </form>
+                <div id="dining-halls">
+                    <div data-filter="true" data-input="#dh-filter" id="dh-choice" data-role="controlgroup"
+                    data-mini="true" data-inset="true" >
+                    <!-- On startup controlgroup is inflated with dining halls fetched from JSON-->
+                    </div>
+                </div>     
+                <!-- Meal options' value are used in JSON urls-->
+                <div id="meal-choice" style="text-align: center">
+                    <fieldset  data-role="controlgroup" data-type="horizontal"  data-inline="true">
+                        <input type="radio" name="meal-option" id="breakfast" value="Breakfast" checked="checked">
+                        <label for="breakfast">Breakfast</label>
+      
+                        <input type="radio" name="meal-option" id="lunch" value="Lunch">
+                        <label for="lunch">Lunch</label>
+                  
+                        <input type="radio" name="meal-option" id="dinner" value="Dinner">
+                        <label for="dinner">Dinner</label>       
+                    </fieldset>
+                </div>
+                <!--buttons-->
+                <input type="button" name="getMenu" id="get-menu" data-theme="a" value="Get Menu"/>
+                <input type="button" name="getHours" id="get-time" data-theme="a" value="Get Hours"/>
+            </div>
         </div>
-        <script type="text/javascript">
-                app.initialize();
-        </script>
+        <script type="text/javascript">app.initialize();</script>
     </body>
 </html>
