@@ -4,22 +4,30 @@ $(document).on('change', '[type="radio"]', function(){
           $("#dh-choice").blur();
     });    
 
-$('#get-menu').click(function() {
+$(document).on('click', '#get-menu', function(e){
+          //triggers when user clicks 'get menu'
           var dhall = $('input[name=dhall-choice]:checked').val();//get name of DH
           var meal = $('input[name=meal-option]:checked').val(); // get meal
           var date = $('#dining-date').val(); //get date
           getMenu(meal,dhall,date);
 });
+
+$(document).on('click', '#get-time', function(e){
+           //triggers when user clicks 'get hours'
+          var dh = $('input[name=dhall-choice]:checked').val();
+          var ml = $('input[name=meal-option]:checked').val();
+          var date = new Date(); //object to get day number
+          getHours(ml,dh,getDayNumber(date.getDay()));
+});
+
       
 function getMenu(meal,diningHall,date){
           //Takes meal, dining hall name and date. Shows menu as popup
           var text = '';
           $.getJSON("https://www.smith.edu/its/api/diningservices/dininghallmeal/"+meal+"/"+diningHall+"/"+date, function(data){
                    if (data.length != 0) {
-                   
                               $.each(data, function (index, value) {
                                         text = text.concat(value.item_text + '\n');
-            
                               });
                               text = text.replace('</br>','');
                               navigator.notification.alert(
@@ -36,17 +44,9 @@ function getMenu(meal,diningHall,date){
 }
       
 function alertDismissed() {
-    // do something
+    // do nothing
 }      
-$('#get-time').click(function() {
-          var dh = $('input[name=dhall-choice]:checked').val();
-          var ml = $('input[name=meal-option]:checked').val();
-          var date = new Date(); //object to get day number
-          getHours(ml,dh,getDayNumber(date.getDay()));
-});
-      
-     
-      
+  
 function getHours(meal,diningHall, day){
           var text = ''; //initialize ouput message
           $.getJSON("https://www.smith.edu/its/api/diningservices/dininghallhours/"+diningHall, function(data){
@@ -60,18 +60,16 @@ function getHours(meal,diningHall, day){
                                                   alertDismissed,         // callback
                                                   'Hours',            // title
                                                   'Ok'                  // buttonName
-                                                  );
-                                                  
+                                                  );       
                                         }
-                             
-            
                               });
                     }
                     else{
                         window.plugins.toast.show('No data', 'short', 'bottom');
-                        }
+                    }
         });      
 }
+
 function getDayNumber(date) {
           //getDay() returns days where Sunday is 0
           //Smith JSON uses 1-7 for Monday-Sunday
