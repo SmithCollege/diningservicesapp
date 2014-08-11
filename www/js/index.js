@@ -49,7 +49,7 @@ var app = {
 };
 
 function openDining(){
-//opens dining.html on click if network is available
+//opens dining page on click if network is available
     if (networkAvailable()) {
         $.mobile.navigate( "#diningpage", { transition: "slide"});
     }
