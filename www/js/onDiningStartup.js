@@ -6,7 +6,7 @@ $(document).on("pagebeforeshow","#diningpage",function (event, ui) {
             //get dining halls and append to controlgroup
             getDiningHalls();
             //set height so everything fits screen
-            setHeight();
+            setHeight();          
 });
 
 function setDate() {
@@ -39,7 +39,6 @@ function getDiningHalls(){
             //select first radio button
             $("input[type='radio']:first").attr("checked", "checked");//!!Selects the very first radio on the page
             $("#dh-choice").trigger("create");//make sure controul group is displayed updated
-          
             });
 }
           

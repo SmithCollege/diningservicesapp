@@ -32,8 +32,8 @@
         <title>Smith College Mobile</title>
     </head>
     <body>
-        <!-- SCMobile Home Page -->
-        <div data-role="page" id="indexpage" data-dom-cache="false">
+        <!-- SCMobile Home Page. Std theme is a-->
+        <div data-role="page" id="indexpage" data-dom-cache="false" data-theme="b"><!-- <= Theme-->
             <div data-role="content">
                 <div class="ui-grid-a"> <!-- two column grid -->
                     <div class="ui-block-a">  <!-- next icon should state ui-block-b and so on -->
@@ -45,18 +45,18 @@
                 </div>
             </div>
         </div>        
-        <!-- Dining page -->
-        <div data-role="page" id="diningpage" data-dom-cache="false">
+        <!-- Dining page. Std theme is a-->
+        <div data-role="page" id="diningpage" data-add-back-btn="true" data-dom-cache="false" data-theme="a"><!-- <= Theme-->
         <!-- Page Header -->
+            <div data-role="header" data-position="fixed">
+                <a data-rel="back" data-role="button" data-icon="arrow-l" data-inline="true" 
+                data-transition="slide" data-direction="reverse" class="ui-btn-left">Back</a>
+                <h1>Dining</h1>
+                <!--window.open() makes sure the link is opened in external browser-->
+                <a href="#" onclick="window.open('http://cbweb.smith.edu/NetNutrition/Home.aspx', '_system');"
+                data-role="button" data-icon="info" data-inline="true" class="ui-btn-right">Nutrition</a>
+            </div>
             <div data-role="content">
-                <div data-theme="a" data-role="header" data-position="fixed">
-                    <a href="#indexpage" data-role="button" data-icon="arrow-l"
-                    data-transition="slide" data-direction="reverse" data-inline="true" class="ui-btn-left">Back</a>
-                    <h1>Dining</h1>
-                    <!--window.open() makes sure the link is opened in external browser-->
-                    <a href="#" onclick="window.open('http://cbweb.smith.edu/NetNutrition/Home.aspx', '_system');"
-                    data-role="button" data-icon="info" data-inline="true" class="ui-btn-right">Nutrition</a>
-                </div>   
                 <!-- Date Picker, simplicity for crossplatform pick -->
                 <input type="date" name="date" id="dining-date" value=""/>
                 <!-- Dining Hall Filter-->
@@ -83,8 +83,8 @@
                     </fieldset>
                 </div>
                 <!--buttons-->
-                <input type="button" name="getMenu" id="get-menu" data-theme="a" value="Get Menu"/>
-                <input type="button" name="getHours" id="get-time" data-theme="a" value="Get Hours"/>
+                <input type="button" name="getMenu" id="get-menu" value="Get Menu"/>
+                <input type="button" name="getHours" id="get-time" value="Get Hours"/>
             </div>
         </div>
         <script type="text/javascript">app.initialize();</script>
