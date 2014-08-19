@@ -26,20 +26,35 @@ function setDate() {
           
 function getDiningHalls(){
             //inflates control group with values from JSON
-            $.getJSON("https://www.smith.edu/its/api/diningservices/dininghalls", function(data){
-              $.each(data, function (index, value) {
-                        var $new = ('<input type="radio" name="dhall-choice" id="'+value.dining_hall_name
-                        +'" value="'+value.dining_hall_name
-                        +'"><label for="'+value.dining_hall_name+'">'
-                        +value.dining_hall_name+'</label>');
-                $('#dh-choice')
-                .controlgroup("container")
-                .append($new); //append radio button with DH id/name/value
-            });
-            //select first radio button
-            $("input[type='radio']:first").attr("checked", "checked");//!!Selects the very first radio on the page
-            $("#dh-choice").trigger("create");//make sure controul group is displayed updated
-            });
+            //check if we have values in current session
+            if (window.sessionStorage.length > 0){
+                        //iterate through current session's storage 
+                        for (var i = 0; i < window.sessionStorage.length; i++){
+                                    //append radio buttons
+                                    $('#dh-choice')
+                                    .controlgroup("container")
+                                    .append(sessionStorage.getItem(sessionStorage.key(i)));
+                        }
+                        $("input[type='radio']:first").attr("checked", "checked");//!!Selects the very first radio on the page
+                        $("#dh-choice").trigger("create");//make sure control group is displayed updated     
+            }
+            else {//if storage is empty we get values from JSON, append them to CG and store in session storage
+                        $.getJSON("https://www.smith.edu/its/api/diningservices/dininghalls", function(data){
+                          $.each(data, function (index, value) {
+                                    var $new = ('<input type="radio" name="dhall-choice" id="'+value.dining_hall_name
+                                    +'" value="'+value.dining_hall_name
+                                    +'"><label for="'+value.dining_hall_name+'">'
+                                    +value.dining_hall_name+'</label>');
+                            $('#dh-choice')
+                            .controlgroup("container")
+                            .append($new); //append radio button with DH id/name/value
+                            window.sessionStorage.setItem(value.dining_hall_name,$new);
+                        });
+                        //select first radio button
+                        $("input[type='radio']:first").attr("checked", "checked");//!!Selects the very first radio on the page
+                        $("#dh-choice").trigger("create");//make sure control group is displayed updated
+                        });
+            }
 }
           
 function setHeight(){
